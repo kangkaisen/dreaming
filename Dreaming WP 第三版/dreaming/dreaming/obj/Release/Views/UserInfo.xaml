@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="dreaming.Views.UserInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White">
+    <Page.Resources>
+      
+
+        <Style TargetType="Button" x:Key="buttonHeart">
+        <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="80"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Border x:Name="Border" Width="80" Height="80" Grid.RowSpan="2" Background="#FF35E79E">
+                                <ContentPresenter 
+                                              x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Top"
+                                                  Grid.Row="0"/>
+                            </Border>
+                            <Image Source="/Assets/Heart2.png" 
+                                   Width="40" Height="40"
+                                   Stretch="UniformToFill"
+                                
+                                   Grid.Row="1"></Image>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Image  Height="80" Width="80"
+                   Stretch="UniformToFill"
+                   Source="{Binding UserImage,Converter={StaticResource StringToStringConverter}}"></Image>
+        <TextBlock HorizontalAlignment="Center"
+                       Grid.Row="1"
+                       FontSize="20"
+                       Text="{Binding UserDay}"
+                       Foreground="Gray"></TextBlock>
+        <TextBlock HorizontalAlignment="Center"
+                       Grid.Row="2"
+                       FontSize="25"
+                       Text="{Binding UserName}"
+                   Foreground="Gray"></TextBlock>
+        <TextBlock HorizontalAlignment="Center" 
+                       TextWrapping="Wrap"
+                       FontSize="20"
+                       Grid.Row="3"
+                       Text="{Binding UserDream}"
+                   Foreground="Gray"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="4"
+                    HorizontalAlignment="Center">
+            <Button Content="{Binding UserCares}"
+                  
+                    Foreground="Orange"  
+                    FontSize="15"  
+                    Style="{StaticResource buttonHeart}"
+                    Command="{Binding CareCommand}"></Button>
+            <Button Content="{Binding UserFollowers}"
+                  
+                    Foreground="Orange"  
+                    FontSize="15" 
+                    Style="{StaticResource buttonHeart}"
+                    Command="{Binding FollowerCommand}"></Button>
+            <Button Content="{Binding UserPosts}"
+                   
+                    Foreground="Orange"  
+                    FontSize="15" 
+                   Style="{StaticResource buttonHeart}"
+                    ></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="5"
+                    HorizontalAlignment="Center">
+            <Button Content="{Binding UserCares}"
+                    
+                    Foreground="Orange"  
+                    FontSize="15"  
+                    Style="{StaticResource buttonHeart}"
+                    ></Button>
+            <Button Content="{Binding UserFollowers}"
+                   
+                    Foreground="Orange"  
+                    FontSize="15" 
+                    Style="{StaticResource buttonHeart}"
+                    ></Button>
+            <Button Content="{Binding UserPosts}"
+                    
+                    Foreground="Orange"  
+                    FontSize="15" 
+                     Style="{StaticResource buttonHeart}"
+                    ></Button>
+        </StackPanel>
+    </Grid>
+</Page>
+

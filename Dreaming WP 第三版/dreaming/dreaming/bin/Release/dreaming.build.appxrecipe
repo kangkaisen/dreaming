@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>KANGKAISEN</Machine>
+    <WindowsUser>凯森</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>a62bf6cd-ee6a-4e59-81ae-6552965e265d</PackageIdentityName>
+    <IntermediateOutputPath>E:\WP源码\dreaming\dreaming\obj\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="E:\WP源码\dreaming\dreaming\bin\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\dreaming.exe">
+      <PackagePath>dreaming.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\packages\EngineIoClientDotNet.0.9.17\lib\portable-win81+wpa81\EngineIoClientDotNet.dll">
+      <PackagePath>EngineIoClientDotNet.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\packages\SocketIoClientDotNet.0.9.10\lib\portable-win81+wpa81\SocketIoClientDotNet.dll">
+      <PackagePath>SocketIoClientDotNet.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\1.png">
+      <PackagePath>Assets\1.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\comment.png">
+      <PackagePath>Assets\comment.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\dream.png">
+      <PackagePath>Assets\dream.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\dream1.png">
+      <PackagePath>Assets\dream1.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\heart.png">
+      <PackagePath>Assets\heart.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\Heart1.png">
+      <PackagePath>Assets\Heart1.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\Heart2.png">
+      <PackagePath>Assets\Heart2.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\Lock.png">
+      <PackagePath>Assets\Lock.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\user.png">
+      <PackagePath>Assets\user.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\User1.png">
+      <PackagePath>Assets\User1.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Controls\ImageControl.xbf">
+      <PackagePath>Controls\ImageControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\AllDreaming.xbf">
+      <PackagePath>Views\AllDreaming.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\Chat.xbf">
+      <PackagePath>Views\Chat.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\Dreaming.xbf">
+      <PackagePath>Views\Dreaming.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\DreamingComment.xbf">
+      <PackagePath>Views\DreamingComment.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\ImageView.xbf">
+      <PackagePath>Views\ImageView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserCare.xbf">
+      <PackagePath>Views\UserCare.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserData.xbf">
+      <PackagePath>Views\UserData.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserDreaming.xbf">
+      <PackagePath>Views\UserDreaming.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserFollower.xbf">
+      <PackagePath>Views\UserFollower.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserInfo.xbf">
+      <PackagePath>Views\UserInfo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserLogin.xbf">
+      <PackagePath>Views\UserLogin.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\Views\UserRegister.xbf">
+      <PackagePath>Views\UserRegister.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\dreaming.xr.xml">
+      <PackagePath>dreaming.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\WP源码\dreaming\dreaming\bin\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

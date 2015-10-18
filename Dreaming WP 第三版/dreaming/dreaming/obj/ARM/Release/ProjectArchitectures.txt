@@ -1,0 +1,4 @@
+E:\WP源码\dreaming\BackPush\BackPush.csproj;arm
+E:\WP源码\dreaming\DataHelp\DataHelp.csproj;arm
+E:\WP源码\dreaming\DataHelp\DataHelp.csproj;arm
+E:\WP源码\dreaming\dreaming\dreaming.csproj;arm

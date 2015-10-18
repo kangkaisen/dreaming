@@ -1,0 +1,88 @@
+﻿<Page
+    x:Class="dreaming.Views.DreamingComment"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:converter="using:dreaming.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converter:StringToStringConverter x:Key="StringToStringConverter"></converter:StringToStringConverter>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+             
+
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding uimage,Converter={StaticResource StringToStringConverter}}" Width="80" Height="80" Stretch="UniformToFill" ></Image>
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="{Binding name}"></TextBlock>
+                    <TextBlock Text="{Binding time}"></TextBlock>
+                </StackPanel>
+
+            </StackPanel>
+            <TextBlock Grid.Row="1" Text="{Binding content}" TextWrapping="Wrap"></TextBlock>
+            <ListView  Grid.Row="2" ItemsSource="{Binding image}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"></ItemsStackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.Template>
+                    <ControlTemplate TargetType="ListView">
+                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListView.Template>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Image  Source="{Binding i,Converter={StaticResource StringToStringConverter}}" Height="120" Width="120" Stretch="UniformToFill"></Image>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:ConnectionId='1' Content="播放" Grid.Row="3" Width="400" Name="song"                    Tag="{Binding song}"></Button>
+            <MediaElement Name="songMedia" Visibility="Collapsed"></MediaElement>
+           
+            <TextBox x:ConnectionId='2' Name="comment" Grid.Row="4" Height="100" 
+                     InputScope="Search" 
+                                          
+                     PlaceholderText="请输入您的评论"></TextBox>
+            <ListView Grid.Row="5" Name="listview">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="70"  Width="70" Source="{Binding image,Converter={StaticResource StringToStringConverter}}"
+                                       Stretch="UniformToFill"></Image>
+                                <TextBlock Text="{Binding name}"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding content}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+
+        </Grid>
+    </ScrollViewer>
+</Page>
+

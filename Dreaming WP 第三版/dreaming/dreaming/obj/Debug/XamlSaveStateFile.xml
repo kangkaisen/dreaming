@@ -1,0 +1,7 @@
+<XamlCompilerSaveState>
+  <ReferenceAssemblyList>
+    <ReferenceAssembly PathName="e:\wp源码\dreaming\packages\engineioclientdotnet.0.9.17\lib\portable-win81+wpa81\engineioclientdotnet.dll" HashGuid="3993cc40-d996-4362-a19f-b80d7d5f6554" />
+    <ReferenceAssembly PathName="e:\wp源码\dreaming\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
+    <ReferenceAssembly PathName="e:\wp源码\dreaming\packages\socketioclientdotnet.0.9.10\lib\portable-win81+wpa81\socketioclientdotnet.dll" HashGuid="7e16919b-b193-3e7c-493c-d1d2ea2f8887" />
+  </ReferenceAssemblyList>
+</XamlCompilerSaveState>

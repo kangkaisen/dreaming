@@ -1,0 +1,372 @@
+﻿<Page
+    x:Class="dreaming.Views.AllDreaming"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:image="using:dreaming.Cache"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White">
+    
+    <Page.Resources>
+        <BitmapImage UriSource="/Assets/icon/heart1.png" x:Key="bitmapImage"></BitmapImage>
+        <Style TargetType="Button" x:Key="buttonPraise">
+
+            <Setter Property="FontSize" Value="20"/>
+
+      
+            <Setter Property="Height" Value="40"></Setter>
+   
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation TargetName="Grid" />
+                                            </Storyboard>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image"
+                                                                           Storyboard.TargetProperty="(Image.Source)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" 
+                                                                        Value="{StaticResource bitmapImage}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image     Width="30" Height="30" 
+                                       Source="/Assets/icon/heart0.png" 
+                                       Stretch="UniformToFill"
+                                       Name="image">
+                              
+                            </Image>
+                            <Border Grid.ColumnSpan="2" x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="2" >
+                               
+                                <ContentPresenter Grid.Column="1" x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonComment">
+
+            <Setter Property="FontSize" Value="20"/>
+
+            <Setter Property="Height" Value="40"></Setter>
+      
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image   Width="30" Height="30" 
+                                       Source="/Assets/icon/comment.png" 
+                                       Stretch="UniformToFill"></Image>
+                            <Border Grid.ColumnSpan="2" x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="5" >
+                                <ContentPresenter x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="listViewDataTemplate">
+            <Border Background="White" 
+                            Margin="0,0,0,10" 
+                            BorderBrush="#FFF7F5F5"
+                            BorderThickness="0,0,0,1" >
+                <Grid Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:ConnectionId='5' Source="{Binding user_image}" 
+                                   Width="60" Height="60" 
+                                   Stretch="UniformToFill" 
+                                                         
+                                   HorizontalAlignment="Left"
+                                   Tag="{Binding user_phone}"
+                                   Margin="5,0,0,0"
+                                   ></Image>
+                        <TextBlock Text="{Binding user_name}" 
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Top"
+                                       Margin="10,0,0,0"
+                                       Foreground="#FF35E79E"
+                                       FontSize="20"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" 
+                                   Text="{Binding content}" 
+                                   TextWrapping="Wrap"
+                                   FontSize="20"
+                                   Margin="5,0,0,10"
+                                   Foreground="Gray"></TextBlock>
+                    <ListView x:ConnectionId='1'  Grid.Row="2" ItemsSource="{Binding image}" 
+                                                                               
+                                   Margin="5,0,5,0"
+                                   Visibility="{Binding image,Converter={StaticResource ImageStringToVisibility}}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel Orientation="Horizontal" ></ItemsStackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ListView">
+                                <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Image  Height="120" Width="120" Stretch="UniformToFill"
+                                            Margin="0,0,5,10" Name="imageList" 
+                                            Source="{Binding i,Converter={StaticResource StringToStringConverter}}">
+
+
+                                </Image>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:ConnectionId='2' 
+                                Visibility="{Binding song,Converter={StaticResource SongStringToVisibility}}"
+                                Grid.Row="3" 
+                                Name="song" 
+                                                  
+                                HorizontalAlignment="Stretch"
+                                Height="45"
+                                 
+                                Style="{StaticResource buttonSquare}"
+                                Background="#FF35E79E"
+                                Tag="{Binding song}"
+                                Margin="5,0,5,0">
+                        <Button.Content>
+                            <Image Source="/Assets/icon/play0.png" 
+                                       Stretch="UniformToFill"
+                                           Width="40"></Image>
+                        </Button.Content>
+                    </Button>
+
+                    <Grid Grid.Row="4" Margin="5,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding time,Converter={StaticResource StringToTimeConverter}}"
+                                       Foreground="Gray"
+                                       FontSize="15"
+                                       VerticalAlignment="Center"></TextBlock>
+                        <Button x:ConnectionId='3'  
+                                     Name="prasie"
+                                                         
+                                     Grid.Column="1"
+                                     Content="{Binding praise_count}"
+                                     Style="{StaticResource buttonPraise}"
+                                     Foreground="Gray">
+                        </Button>
+                        <Button x:ConnectionId='4' Grid.Column="2"
+                                    Content="{Binding comment_count}"
+                                    Style="{StaticResource buttonComment}"
+                                                         
+                                    Foreground="Gray">
+                        </Button>
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+        </Style>
+        <Style TargetType="PivotHeaderItem">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="CharacterSpacing" Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF35E79E" />
+            <Setter Property="Margin" Value="5,10,20,5" />
+    
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PivotHeaderItem">
+                        <Grid x:Name="Grid">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Unselected" To="UnselectedLocked" GeneratedDuration="0:0:0.33" />
+                                        <VisualTransition From="UnselectedLocked" To="Unselected" GeneratedDuration="0:0:0.33" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="UnselectedLocked">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="{ThemeResource PhonePivotLockedTranslation}" Storyboard.TargetProperty="X" Storyboard.TargetName="ContentPresenterTranslateTransform" />
+                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFF7EE36" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Grid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotHeaderBackgroundSelectedBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        
+                            <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}">
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style  TargetType="Pivot">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Grid/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Pivot">
+                        <Grid x:Name="RootElement" Background="#FFFFFFFF"  HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" />
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                                <PivotPanel x:Name="Panel" VerticalAlignment="Stretch" >
+                                    <PivotHeaderPanel x:Name="Header" >
+                                        <PivotHeaderPanel.RenderTransform>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                        </PivotHeaderPanel.RenderTransform>
+                                    </PivotHeaderPanel>
+                                    <ItemsPresenter x:Name="PivotItemPresenter" >
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </PivotPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White" Margin="0" >
+       
+
+        <Pivot x:ConnectionId='6' Name="DreamingPivot" 
+                                                                
+           
+              >
+            <PivotItem Header="梦想" Name="dreamPivot" Margin="0">
+                <ListView x:ConnectionId='10' 
+                  Background="White"
+                                                                              
+                  ItemTemplate="{StaticResource listViewDataTemplate}"
+                  Name="dreamList">
+               </ListView>
+            </PivotItem>
+            <PivotItem Header="经验" Name="experiencePivot" Margin="0">
+                <ListView x:ConnectionId='9' 
+                  Background="White"
+                                                                              
+                  ItemTemplate="{StaticResource listViewDataTemplate}"
+                  Name="experienceList">
+                </ListView>
+            </PivotItem>
+            <PivotItem Header="吐槽" Name="tucaoPivot" Margin="0">
+                <ListView x:ConnectionId='8' 
+                  Background="White"
+                                                                              
+                  ItemTemplate="{StaticResource listViewDataTemplate}"
+                  Name="tucaoList">
+                </ListView>
+            </PivotItem>
+            <PivotItem Header="问答" Name="askPivot" Margin="0">
+                <ListView x:ConnectionId='7' 
+                  Background="White"
+                                                                              
+                  ItemTemplate="{StaticResource listViewDataTemplate}"
+                  Name="askList">
+                </ListView>
+            </PivotItem>
+        </Pivot>
+      
+        <MediaElement  Name="songMedia" Visibility="Collapsed"></MediaElement>
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF35E79E" Foreground="White">
+            <AppBarButton x:ConnectionId='11' Icon="Add" Label="发布梦想" Name="publish"
+                                               
+                         />
+            <AppBarButton x:ConnectionId='12' Icon="Refresh" Label="刷新" Name="refresh"
+                                               
+            ></AppBarButton>
+            <AppBarButton x:ConnectionId='13' Icon="Up" Label="回顶部" Name="up"
+                                          >
+                
+            </AppBarButton>
+         </CommandBar>
+    </Page.BottomAppBar>
+</Page>
+

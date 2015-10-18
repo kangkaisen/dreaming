@@ -1,0 +1,106 @@
+﻿<Page
+    x:Class="dreaming.Views.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White">
+    <Page.Resources>
+        <Storyboard x:Name="sb">
+           
+            <DoubleAnimation Duration="0:0:0.4"
+                             Storyboard.TargetName="image"
+                             Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)"
+                             To="90"
+                             AutoReverse="True"/>
+            <DoubleAnimation Duration="0:0:0.8"
+                             From="0"
+                             Storyboard.TargetName="image"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             BeginTime="0:0:0"/>
+            <DoubleAnimation BeginTime="0:0:0.5"
+                             Duration="0:0:0.5"
+                             From="0"
+                             Storyboard.TargetName="info"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1" />
+            <DoubleAnimation BeginTime="0:0:1"
+                             Duration="0:0:0.5"
+                             From="0"
+                             Storyboard.TargetName="xiaomeng"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1" />
+
+        </Storyboard>
+    </Page.Resources>
+    <Grid Margin="10,0,0,0">
+        
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Assets/icon/about.png"
+                                       Width="48"
+                                       Height="48"
+                                       HorizontalAlignment="Left">
+
+                </Image>
+                <TextBlock Foreground="Black"
+                                           Text="关于"
+                                           FontSize="20"
+                                           Margin="10,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                </TextBlock>
+            </StackPanel>
+            <Image Source="/Assets/icon/eagle2.png"
+                   Grid.Row="1"
+                   Name="image"
+                   Opacity="0"
+                   VerticalAlignment="Bottom">
+            <Image.Projection>
+                <PlaneProjection/>
+            </Image.Projection>
+            </Image>
+            <StackPanel Grid.Row="2" Name="info" Opacity="0"
+                        VerticalAlignment="Top">
+            <TextBlock Name="versionText"
+                       Foreground="Gray"
+                       FontSize="15"
+                       HorizontalAlignment="Center"
+                       ></TextBlock>
+            <TextBlock 
+                   Foreground="Black"
+                   FontSize="15"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   Text="追梦路上,你我同行!"
+                   Margin="0,10"
+                  >
+            </TextBlock>
+        </StackPanel>
+       
+        <HyperlinkButton     Foreground="#FF35E79E"
+                             Content="新浪微博:编程小梦"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             NavigateUri="http://weibo.com/533234148/"
+                             Opacity="0"
+                             Grid.Row="3"
+                             Name="xiaomeng"
+                             >
+
+        </HyperlinkButton>
+
+    </Grid>
+    
+</Page>
+

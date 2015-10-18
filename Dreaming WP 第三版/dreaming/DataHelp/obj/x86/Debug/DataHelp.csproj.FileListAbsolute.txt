@@ -1,0 +1,16 @@
+E:\WP源码\dreaming\DataHelp\bin\x86\Debug\DataHelp.dll
+E:\WP源码\dreaming\DataHelp\bin\x86\Debug\DataHelp.pdb
+E:\WP源码\dreaming\DataHelp\bin\x86\Debug\DataHelp.pri
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\DataHelp.dll
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\DataHelp.pdb
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\priconfig.xml
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\priconfig.xml.intermediate
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\layout.resfiles
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\layout.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\resources.resfiles
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\resources.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\pri.resfiles
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\pri.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\qualifiers.txt
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\qualifiers.txt.intermediate
+E:\WP源码\dreaming\DataHelp\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt

@@ -1,0 +1,232 @@
+﻿<Page
+    x:Class="dreaming.Views.AllDreaming"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:image="using:dreaming.Cache"
+    xmlns:converter="using:dreaming.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converter:StringToStringConverter x:Key="StringToStringConverter"></converter:StringToStringConverter>
+        <Style TargetType="Button" x:Key="buttonPraise">
+
+            <Setter Property="FontSize" Value="20"/>
+
+      
+            <Setter Property="Height" Value="40"></Setter>
+   
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image Width="30" Height="30" 
+                                       Source="/Assets/heart.png" 
+                                       Stretch="UniformToFill"></Image>
+                            <Border Grid.ColumnSpan="2" x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="2" >
+                               
+                                <ContentPresenter Grid.Column="1" x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonComment">
+
+            <Setter Property="FontSize" Value="20"/>
+
+            <Setter Property="Height" Value="40"></Setter>
+      
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image Width="30" Height="30" 
+                                       Source="/Assets/comment.png" 
+                                       Stretch="UniformToFill"></Image>
+                            <Border Grid.ColumnSpan="2" x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="5" >
+                                <ContentPresenter x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonSong">
+
+            <Setter Property="FontSize" Value="20"/>
+
+            <Setter Property="Height" Value="40"></Setter>
+
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                         
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                    
+                            <Border  x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="5" >
+                                <ContentPresenter x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#FF23AC5B">
+            <TextBlock Text="广场" FontSize="40" Margin="9.5"
+                   FontFamily="微软雅黑" ></TextBlock>
+        </Border>
+        <ListView Name="listView" Grid.Row="1" ItemsSource="{Binding DreamingList}"
+              
+                  Margin="10,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding uimage,Converter={StaticResource StringToStringConverter}}" Width="60" Height="60" Stretch="UniformToFill" 
+                                  Tapped="Image_Tapped" HorizontalAlignment="Left"
+                                   Tag="{Binding uid}"
+                                   ></Image>
+                            <TextBlock Text="{Binding name}" HorizontalAlignment="Right"
+                                       Margin="10,0,0,0"
+                                       FontSize="20"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Text="{Binding content}" TextWrapping="Wrap"
+                                   FontSize="20"></TextBlock>
+                        <ListView  Grid.Row="2" ItemsSource="{Binding image}" SelectionChanged="ListView_SelectionChanged">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsStackPanel Orientation="Horizontal"></ItemsStackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.Template>
+                                <ControlTemplate TargetType="ListView">
+                                    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Image  Height="100" Width="100" Stretch="UniformToFill"
+                                            Margin="5,0" Name="imageList" >
+                                        <Image.Source>
+                                            <image:StorageCachedImage UriSource="{Binding i}"></image:StorageCachedImage>
+                                        </Image.Source>
+                                    </Image>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button Content="播放" Grid.Row="3" Name="song" Click="song_Click"
+                                Width="380" 
+                                Style="{StaticResource buttonSong}"
+                                Background="Gray"
+                                Tag="{Binding song}"></Button>
+                       
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding time}"></TextBlock>
+                            <Button  Tag="{Binding _id}"
+                                     Name="prasie"
+                                     Click="praise_Click"
+                                     Grid.Column="1"
+                                     Content="{Binding praise}"
+                                     Style="{StaticResource buttonPraise}"> 
+                            </Button>
+                            <Button Grid.Column="2"
+                                    Content="{Binding length}"
+                                    Style="{StaticResource buttonComment}"
+                                    Click="comment_Click">
+                             </Button>
+                         
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <MediaElement Name="songMedia" Visibility="Collapsed" ></MediaElement>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF35E79E">
+            <AppBarButton Icon="Add" Label="发布梦想" Command="{Binding PostCommand}"/>
+         </CommandBar>
+    </Page.BottomAppBar>
+</Page>

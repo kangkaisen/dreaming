@@ -1,0 +1,325 @@
+﻿<Page
+    x:Class="dreaming.Views.Chat"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:control="using:dreaming.ControlHelp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#FFF7F5F5">
+
+    <Page.Resources>
+        <DataTemplate x:Name="ToTemplate">
+
+            <Grid x:Name="textToBubble" HorizontalAlignment="Right" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="0" Grid.Row="0" Background="#FF35E79E">
+
+
+
+                    <TextBlock  Foreground="Black"   
+                                  Text="{Binding msg}" 
+                                  
+                                  TextWrapping="Wrap" 
+                                  
+                                  MaxWidth="300" 
+                                  FontSize="16" 
+                                  Padding="10"
+                                 VerticalAlignment="Center">
+
+                    </TextBlock>
+
+
+                </Grid>
+                <Path  Grid.Column="1"  Data="M0,5 L7,0 L0,-5 z" Fill="#FF35E79E" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="Fill" UseLayoutRounding="False" Width="10" />
+                <Image Grid.Column="2"  Source="{Binding myImage}" Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+            </Grid>
+
+        </DataTemplate>
+
+        <DataTemplate x:Name="FromTemplate">
+            <Grid x:Name="FromBubble" HorizontalAlignment="Left" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding myImage}" Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+                <Path  Grid.Column="1"  Data="M0,5 L-7,0 L0,-5 z" Fill="White" VerticalAlignment="Center" HorizontalAlignment="Right" Stretch="Fill"  Width="10" />
+                <Grid Margin="0" Background="White" Grid.Column="2">
+
+
+                    <TextBlock Foreground="Black" 
+                               Text="{Binding msg}" 
+                               
+                               TextWrapping="Wrap" 
+                               VerticalAlignment="Center"
+                               MaxWidth="300"
+                               FontSize="16" 
+                               Padding="10">
+
+                    </TextBlock>
+
+
+                </Grid>
+
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="voiceToTemplate">
+            <Grid  HorizontalAlignment="Right" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource button1}" 
+                        Tag="{Binding msg}"
+                        Click="palySong"
+                        Width="100"
+                        Height="50"
+                        Background="#FF35E79E"
+                        Margin="0,0,5,0"
+                        >
+                    <Button.Content>
+                        <Image Source="/Assets/icon/play0.png" 
+                               Stretch="Uniform"
+                               Width="40"
+                               Height="40"></Image>
+                    </Button.Content>
+                </Button>
+
+                <Image Grid.Column="1"  Source="{Binding myImage}" Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="voiceFromTemplate">
+            <Grid  HorizontalAlignment="Left" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource button1}" 
+                        Tag="{Binding msg}"
+                        Click="palySong"
+                        Width="100"
+                        Height="50"
+                        Background="#FF35E79E"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        >
+                    <Button.Content>
+                        <Image Source="/Assets/icon/play0.png"
+                               Stretch="Uniform"
+                               Width="40"
+                               Height="40"></Image>
+                    </Button.Content>
+                </Button>
+
+                <Image  Source="{Binding myImage}"  Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="imageToTemplate">
+            <Grid  HorizontalAlignment="Right" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Image Stretch="UniformToFill" 
+                       Source="{Binding msg,Converter={StaticResource StringToStringConverter}}" 
+                       Width="200"
+                       Height="200"
+                       Margin="5,0"></Image>
+
+                <Image Grid.Column="1"  Source="{Binding myImage}" Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="imageFromTemplate">
+            <Grid  HorizontalAlignment="Left" Margin="10" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Stretch="UniformToFill" 
+                       Source="{Binding msg,Converter={StaticResource StringToStringConverter}}"
+                       Width="200"
+                       Height="200"
+                       Grid.Column="1"
+                       Margin="5,0"></Image>
+
+                <Image  Source="{Binding myImage}"  Width="50" Height="50" Stretch="UniformToFill" VerticalAlignment="Top"></Image>
+            </Grid>
+        </DataTemplate>
+        <control:ChatBubbleSelector x:Key="ChatBubbleTemplateSelector" 
+                                    textToBubble="{StaticResource ToTemplate}" 
+                                    textFromBubble="{StaticResource FromTemplate}"
+                                    voiceToBubble="{StaticResource voiceToTemplate}"
+                                    voiceFromBubble="{StaticResource voiceFromTemplate}"
+                                    imageToBubble="{StaticResource imageToTemplate}"
+                                    imageFromBubble="{StaticResource imageFromTemplate}"></control:ChatBubbleSelector>
+
+        <Style TargetType="TextBox">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+
+
+                            <Border x:Name="BackgroundElement"  Background="White" Margin="{TemplateBinding BorderThickness}" />
+                            
+                            <ScrollViewer  x:Name="ContentElement" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="{TemplateBinding BorderThickness}" MinHeight="{ThemeResource TextControlThemeMinHeight}" Padding="{TemplateBinding Padding}"  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
+                            <ContentControl  x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Foreground="Gray" FontSize="{ThemeResource ContentControlFontSize}" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock  Name="textName" Foreground="Black" Margin="12,10,0,0" FontSize="30"></TextBlock>
+
+        <ListView  Grid.Row="1"  x:Name="myChat" ItemTemplateSelector="{StaticResource ChatBubbleTemplateSelector}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <Grid Grid.Row="2" VerticalAlignment="Bottom" Margin="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Assets/icon/record.png"
+                       Name="record"
+                       Tapped="record_Tapped"
+                       Stretch="Uniform"></Image>
+                <TextBox InputScope="Search" 
+                     Height="60"
+                     KeyDown="TextBox_KeyDown"
+                     TextWrapping="Wrap"
+                     Name="chatText"
+                     Margin="0"
+                     Padding="0"
+                     PlaceholderText="请输入文字"
+                     Grid.Column="1"></TextBox>
+                <Image Source="/Assets/icon/image.png"
+                       Grid.Column="2"
+                       Name="image"
+                       Stretch="Uniform"
+                       Tapped="image_Tapped"></Image>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Name="gridRecord" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Storyboard x:Name="storyboard">
+                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                 Storyboard.TargetProperty="ScaleY"
+                                 From="1"
+                                 To="3"
+                                 Duration="0:0:3"
+                                 RepeatBehavior="Forever"
+                                 AutoReverse="True">
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                 Storyboard.TargetProperty="ScaleX"
+                                 From="1"
+                                 To="3"
+                                 Duration="0:0:3"
+                                 RepeatBehavior="Forever"
+                                 AutoReverse="True">
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="ellipse"
+                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                     From="1"
+                                     To="0"
+                                     Duration="0:0:3"
+                                     RepeatBehavior="Forever"
+                                     AutoReverse="True">
+                        
+                    </DoubleAnimation>
+                </Storyboard>
+            </Grid.Resources>
+      
+            <Ellipse Width="60" Height="60"
+                     Fill="#FF35E79E">
+                
+            </Ellipse>
+            <Ellipse Width="60" Height="60"
+                     Fill="#FF35E79E"
+                     RenderTransformOrigin="0.5,0.5"
+                     Name="ellipse">
+                <Ellipse.RenderTransform >
+                    <ScaleTransform x:Name="scaleTransform">
+                        
+                    </ScaleTransform>
+                </Ellipse.RenderTransform>
+            </Ellipse>    
+           
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Assets/icon/cancel.png"
+                       Name="cancel"
+                       Tapped="cancel_Tapped"
+                       Stretch="Uniform"
+                       Width="80"
+                       Height="80"
+                       HorizontalAlignment="Right"
+                       Visibility="Collapsed"></Image>
+                <Image Source="/Assets/icon/stop.png"
+                       Grid.Column="1"
+                       Name="stop"
+                       Tapped="stop_Tapped"
+                       Stretch="Uniform"
+                        Width="80"
+                       Height="80">
+                    
+                </Image>
+                <Image Source="/Assets/icon/accept.png"
+                       Grid.Column="2"
+                       Name="accept"
+                       Tapped="accept_Tapped"
+                       Stretch="Uniform"
+                       Width="80"
+                       Height="80"
+                       HorizontalAlignment="Left"
+                       Visibility="Collapsed"></Image>
+            </Grid>
+           
+
+
+
+           
+        </Grid>
+        <MediaElement Name="songMedia" Visibility="Collapsed"></MediaElement>
+    </Grid>
+</Page>

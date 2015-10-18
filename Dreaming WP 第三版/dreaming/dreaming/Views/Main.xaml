@@ -1,0 +1,640 @@
+﻿<Page
+    x:Class="dreaming.Views.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:dreaming.Controls"
+    Background="White">
+    <Page.Resources>
+        <Style TargetType="PivotHeaderItem">
+            <Setter Property="FontSize" Value="30"/>
+         
+            <Setter Property="CharacterSpacing" Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF35E79E" />
+            <Setter Property="Margin" Value="{ThemeResource PivotHeaderItemMargin}" />
+            <Setter Property="Padding" Value="{ThemeResource PivotHeaderItemPadding}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PivotHeaderItem">
+                        <Grid x:Name="Grid">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Unselected" To="UnselectedLocked" GeneratedDuration="0:0:0.33" />
+                                        <VisualTransition From="UnselectedLocked" To="Unselected" GeneratedDuration="0:0:0.33" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="UnselectedLocked">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="{ThemeResource PhonePivotLockedTranslation}" Storyboard.TargetProperty="X" Storyboard.TargetName="ContentPresenterTranslateTransform" />
+                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFF7EE36" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Grid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotHeaderBackgroundSelectedBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                         
+                            <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}">
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style  TargetType="Pivot">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+           
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Grid/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Pivot">
+                        <Grid x:Name="RootElement" Background="#FFFFFFFF"  HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        
+                            <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" />
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                                <PivotPanel x:Name="Panel" VerticalAlignment="Stretch" >
+                                    <PivotHeaderPanel x:Name="Header" >
+                                        <PivotHeaderPanel.RenderTransform>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                        </PivotHeaderPanel.RenderTransform>
+                                    </PivotHeaderPanel>
+                                    <ItemsPresenter x:Name="PivotItemPresenter" >
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </PivotPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Name="sbMain">
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="image"
+                Storyboard.TargetProperty="Visibility"
+                BeginTime="0:0:2">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="Collapsed"></DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation 
+                Storyboard.TargetName="scale"
+                Storyboard.TargetProperty="ScaleY"
+                From="2"
+                To="0"
+                Duration="0:0:0.3"
+                BeginTime="0:0:2">
+            </DoubleAnimation>
+            <DoubleAnimation 
+                Storyboard.TargetName="scale"
+                Storyboard.TargetProperty="ScaleX"
+                From="2"
+                To="0"
+                Duration="0:0:0.3"
+                BeginTime="0:0:2">
+            </DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="mainPivot"
+                Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:2.3" Value="Visible"></DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Grid >
+        <Pivot  Visibility="Collapsed"  Name="mainPivot"
+                Margin="0,20,0,0"
+                SelectionChanged="mainPivot_SelectionChanged">
+            <PivotItem Name="userCenter"
+                Header="个人" >
+          
+             
+            <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding UserImage}"
+                           Width="80"
+                           Height="80"
+                           Stretch="UniformToFill"
+                           Name="userImage"
+                           Tapped="userImage_Tapped"></Image>
+                    <TextBlock Text="{Binding UserName}"
+                               Foreground="Black"
+                               FontSize="20"
+                               Grid.Row="1"
+                               HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="{Binding UserDream}"
+                               Foreground="Gray"
+                               FontSize="15"
+                               Grid.Row="2"
+                               HorizontalAlignment="Center"></TextBlock>
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="0,1,1,0" BorderBrush="#FFF7F5F5"
+                                >
+                            <Button Background="White"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Style="{StaticResource buttonSquare}"
+                                    Name="care"
+                                    Click="care_Click">
+                                <Button.Content>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding UserCare}"
+                                                   Foreground="#FF35E79E"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="关注"
+                                                   Foreground="Black"
+                                                   FontSize="15"
+                                                   FontWeight="Light"></TextBlock>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+                        <Border BorderThickness="0,1,0,1" BorderBrush="#FFF7F5F5"
+                                Grid.Column="1">
+                            <Button Background="White"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Style="{StaticResource buttonSquare}"
+                                    Name="follow"
+                                    Click="follow_Click">
+                                <Button.Content>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding UserFollow}"
+                                                   Foreground="#FF35E79E"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="粉丝"
+                                                   Foreground="Black"
+                                                   FontSize="15"
+                                                   FontWeight="Light"></TextBlock>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+                        <Border BorderThickness="0,1,1,0" BorderBrush="#FFF7F5F5"
+                                Grid.Row="1">
+                            <Button Background="White"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Style="{StaticResource buttonSquare}"
+                                    Name="post"
+                                    Click="post_Click">
+                                <Button.Content>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding UserPost}"
+                                                   Foreground="#FF35E79E"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="分享"
+                                                   Foreground="Black"
+                                                   FontSize="15"
+                                                   FontWeight="Light"></TextBlock>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1">
+                            <Button Background="White"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Style="{StaticResource buttonSquare}"
+                                    Name="task"
+                                    Click="task_Click">
+                                <Button.Content>
+                                    <StackPanel >
+                                        <TextBlock Text="0"
+                                                   Foreground="#FF35E79E"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="任务"
+                                                   Foreground="Black"
+                                                   FontSize="15"
+                                                   FontWeight="Light"></TextBlock>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </PivotItem>
+            <PivotItem Name="chatList" Header="消息" Tag="message">
+                  
+                <ListView ItemsSource="{Binding MsgList}" 
+                          ItemClick="ListView_ItemClick" 
+                          IsItemClickEnabled="True"
+                          Name="myListView">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="zhiyin"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,10"
+                            Click="zhiyin_Click"
+                            >
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Assets/icon/find.png"
+                                       Width="50"
+                                       Height="50"
+                                       HorizontalAlignment="Left">
+
+                                            </Image>
+                                            <TextBlock Foreground="Black"
+                                           Text="知音"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="praiseButton"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,10"
+                            Click="praiseButton_Click"
+                            >
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Assets/icon/like2.png"
+                                       Width="50"
+                                       Height="50"
+                                       HorizontalAlignment="Left">
+
+                                            </Image>
+                                            <TextBlock Foreground="Black"
+                                           Text="点赞"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="commentBtn"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,10"
+                            Click="commentBtn_Click"
+                            >
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Assets/icon/comment2.png"
+                                       Width="50"
+                                       Height="50"
+                                       HorizontalAlignment="Left">
+
+                                            </Image>
+                                            <TextBlock Foreground="Black"
+                                           Text="评论"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Name="msgGrid" Holding="msgGrid_Holding">
+                                <FlyoutBase.AttachedFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem  Text="删除"  
+                            Command="{Binding  ElementName=myListView,Path=DataContext.DeleteCommand}"
+                            CommandParameter="{Binding uid}"
+                            />
+                                    </MenuFlyout>
+                                </FlyoutBase.AttachedFlyout>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding image}"
+                           Width="50"
+                           Height="50"
+                           Stretch="UniformToFill"
+                           Margin="0,0,10,0"
+                           Grid.RowSpan="2"></Image>
+                                <Ellipse Fill="Red"
+                                 Width="8"
+                                 Height="8"
+                                 Grid.RowSpan="2"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Right"
+                                 Visibility="{Binding isRead,Converter={StaticResource BoolToVisibility}}">
+
+                                </Ellipse>
+                                <TextBlock Text="{Binding name}"
+                               Foreground="#FF35E79E"
+                               FontSize="20"
+                               Grid.Column="1">
+                                </TextBlock>
+                                <TextBlock Text="{Binding dream}"
+                               Foreground="Gray"
+                               FontSize="15"
+                               Grid.Column="1"
+                               Grid.Row="1">
+                                </TextBlock>
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </PivotItem>
+           
+            <PivotItem Header="追梦">
+                <ListView Margin="0,20,0,0" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <Grid>
+                    <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="dreaming"
+                            Background="#FF4FF766"
+                            HorizontalAlignment="Stretch"
+                            Height="100"
+                            Margin="0,0,0,20"
+                            Opacity="0.5"
+                            Click="dreaming_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/icon/Eagle3.png"
+                                       Width="100"
+                                       Height="100"
+                                       HorizontalAlignment="Left">
+
+                                </Image>
+                                <TextBlock Foreground="Black"
+                                           Text="追梦路上,你我同行"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+                               </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    </Grid>
+                    <Grid>
+                        <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="taskList"
+                            Background="#FFCDF034"
+                            HorizontalAlignment="Stretch"
+                            Height="100"
+                            Margin="0,0,0,20"
+                            Click="taskList_Click"
+                            Opacity="0.5">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/icon/list.png"
+                                       Width="100"
+                                       Height="100"
+                                       HorizontalAlignment="Left">
+
+                                    </Image>
+                                    <TextBlock Foreground="Black"
+                                           Text="千里之行,始于足下"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+
+
+                </ListView>
+            </PivotItem>
+            <PivotItem  Header="更多">
+             
+             <ListView Margin="0,20,0,0" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="about"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,20"
+                            Click="about_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/icon/about.png"
+                                       Width="48"
+                                       Height="48"
+                                       HorizontalAlignment="Left">
+                                    
+                                </Image>
+                                <TextBlock Foreground="Black"
+                                           Text="关于"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+                                    
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="reply"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,20"
+                            Click="reply_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/icon/reply.png"
+                                       Width="48"
+                                       Height="48"
+                                       HorizontalAlignment="Left">
+
+                                </Image>
+                                <TextBlock Foreground="Black"
+                                           Text="反馈"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="setting"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,20"
+                            Click="setting_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/icon/setting.png"
+                                       Width="48"
+                                       Height="48"
+                                       HorizontalAlignment="Left">
+
+                                </Image>
+                                <TextBlock Foreground="Black"
+                                           Text="设置"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                            Style="{StaticResource buttonSquare}"
+                            Name="praise"
+                            Background="White"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,20"
+                            Click="praise_Click">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/icon/like.png"
+                                       Width="48"
+                                       Height="48"
+                                       HorizontalAlignment="Left">
+
+                                </Image>
+                                <TextBlock Foreground="Black"
+                                           Text="鼓励"
+                                           FontSize="20"
+                                           Margin="20,0,0,0"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Light">
+
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                  
+                </ListView>
+            </PivotItem>
+        </Pivot>
+        <Image Source="/Assets/dream3.png"
+               Name="image"
+               Stretch="UniformToFill">
+            <Image.RenderTransform >
+                <ScaleTransform x:Name="scale" CenterX="200" CenterY="400"></ScaleTransform>
+            </Image.RenderTransform>
+        </Image>
+        <Border x:Name="bd_QuitInfo" 
+                Background="#7FF7EE36"
+                Visibility="Collapsed" 
+                Opacity="0.75" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                
+           
+                >
+
+            <TextBlock  HorizontalAlignment="Center" 
+                        Foreground="Black"
+                        FontSize="20"
+                        Margin="20,10"
+                        Text="再按一次退出应用">
+
+
+
+            </TextBlock>
+
+        </Border>
+    </Grid>
+    <Page.BottomAppBar >
+        <CommandBar Background="#FF35E79E" Foreground="White" Name="commandBar" Visibility="Collapsed">
+            <AppBarButton Icon="Refresh" Label="刷新" Command="{Binding RefreshCommand}"></AppBarButton>
+  
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="dreaming.Views.ImageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+   
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+ 
+    <Grid Margin="0">
+        <FlipView Name="flipview" Margin="0">
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Image Name="image" Source="{Binding i,Converter={StaticResource StringToStringConverter}}"
+                           Stretch="UniformToFill"></Image>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal" Background="#FF35E79E" Foreground="White">
+            <AppBarButton x:ConnectionId='1' Icon="Save" Label="保存"                           ></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
+

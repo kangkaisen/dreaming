@@ -1,0 +1,16 @@
+E:\WP源码\dreaming\DataHelp\bin\ARM\Release\DataHelp.dll
+E:\WP源码\dreaming\DataHelp\bin\ARM\Release\DataHelp.pdb
+E:\WP源码\dreaming\DataHelp\bin\ARM\Release\DataHelp.pri
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\DataHelp.dll
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\DataHelp.pdb
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\priconfig.xml
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\priconfig.xml.intermediate
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\layout.resfiles
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\layout.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\resources.resfiles
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\resources.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\pri.resfiles
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\pri.resfiles.intermediate
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\qualifiers.txt
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\qualifiers.txt.intermediate
+E:\WP源码\dreaming\DataHelp\obj\ARM\Release\MultipleQualifiersPerDimensionFound.txt

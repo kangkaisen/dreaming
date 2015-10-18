@@ -1,0 +1,157 @@
+﻿<Page
+    x:Class="dreaming.Views.Dreaming"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#FFF7F5F5">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox  VerticalAlignment="Stretch"
+                      TextWrapping="Wrap"
+                      Margin="10,0"
+                      PlaceholderText="请输入文字信息"
+                      Text="{Binding Dreaming,Mode=TwoWay}"
+                      Style="{StaticResource textBox1}"
+                      >
+            </TextBox>
+            <ListView Name="listView" 
+                      
+                      Grid.Row="1">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal"></ItemsStackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.Template>
+                    <ControlTemplate TargetType="ListView">
+                        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListView.Template>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Image Source="{Binding i}" 
+                               Height="90" Width="90" 
+                               Stretch="UniformToFill"
+                               Margin="5,0,0,0" ></Image>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="1" Name="gridRecord" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Storyboard x:Name="storyboard">
+                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                 Storyboard.TargetProperty="ScaleY"
+                                 From="1"
+                                 To="3"
+                                 Duration="0:0:3"
+                                 RepeatBehavior="Forever"
+                                 AutoReverse="True">
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                 Storyboard.TargetProperty="ScaleX"
+                                 From="1"
+                                 To="3"
+                                 Duration="0:0:3"
+                                 RepeatBehavior="Forever"
+                                 AutoReverse="True">
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="ellipse"
+                                     Storyboard.TargetProperty="(UIElement.Opacity)"
+                                     From="1"
+                                     To="0"
+                                     Duration="0:0:3"
+                                     RepeatBehavior="Forever"
+                                     AutoReverse="True">
+
+                    </DoubleAnimation>
+                </Storyboard>
+            </Grid.Resources>
+
+            <Ellipse Width="60" Height="60"
+                     Fill="#FF35E79E">
+
+            </Ellipse>
+            <Ellipse Width="60" Height="60"
+                     Fill="#FF35E79E"
+                     RenderTransformOrigin="0.5,0.5"
+                     Name="ellipse">
+                <Ellipse.RenderTransform >
+                    <ScaleTransform x:Name="scaleTransform">
+
+                    </ScaleTransform>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:ConnectionId='1' Source="/Assets/icon/cancel.png"
+                       Name="cancel"
+                                             
+                       Stretch="Uniform"
+                       Width="80"
+                       Height="80"
+                       HorizontalAlignment="Right"
+                       Visibility="Collapsed"></Image>
+                <Image x:ConnectionId='2' Source="/Assets/icon/stop.png"
+                       Grid.Column="1"
+                       Name="stop"
+                                           
+                       Stretch="Uniform"
+                        Width="80"
+                       Height="80"></Image>
+                <Image x:ConnectionId='3' Source="/Assets/icon/accept.png"
+                       Grid.Column="2"
+                       Name="accept"
+                                             
+                       Stretch="Uniform"
+                       Width="80"
+                       Height="80"
+                       HorizontalAlignment="Left"
+                       Visibility="Collapsed"></Image>
+            </Grid>
+
+
+
+
+
+        </Grid>
+        <MediaElement Name="songMedia" Visibility="Collapsed"></MediaElement>
+
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF35E79E" Foreground="White">
+           <AppBarButton Icon="Add" Label="发表" Command="{Binding PostCommand}"></AppBarButton>
+           <AppBarButton x:ConnectionId='4' Icon="Microphone" Label="录音" Name="record"                       ></AppBarButton>
+           <AppBarButton x:ConnectionId='5' Icon="Camera" Label="图片" Name="image"                    ></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
+
+

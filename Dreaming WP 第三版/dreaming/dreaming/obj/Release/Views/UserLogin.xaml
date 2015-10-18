@@ -1,0 +1,138 @@
+﻿<Page
+    x:Class="dreaming.Views.UserLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+
+        <Style x:Key="TextBoxStyle1" TargetType="TextBox">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border x:Name="BackgroundElement" Grid.ColumnSpan="2" Background="{TemplateBinding Background}" Margin="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                            <Border x:Name="BorderElement" Grid.ColumnSpan="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"  CornerRadius="2"/>
+                            <Image Grid.Column="0" Source="/Assets/user.png" Width="30" Height="30" Stretch="UniformToFill" ></Image>
+
+                            <ScrollViewer Grid.Column="1" x:Name="ContentElement" VerticalAlignment="Center" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="{TemplateBinding BorderThickness}" MinHeight="{ThemeResource TextControlThemeMinHeight}" Padding="{TemplateBinding Padding}"  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
+                            <ContentControl Grid.Column="1" x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}" FontSize="{ThemeResource ContentControlFontSize}" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PasswordBoxStyle1" TargetType="PasswordBox">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.ColumnSpan="2" x:Name="BackgroundElement" Background="{TemplateBinding Background}" Margin="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                            <Border Grid.ColumnSpan="2" x:Name="BorderElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                            <Image Grid.Column="0" Source="/Assets/Lock.png" Width="30" Height="30" Stretch="UniformToFill" ></Image>
+                            <ScrollViewer Grid.Column="1" x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" Margin="{ThemeResource RichEditBoxTextThemeMargin}" MinHeight="{ThemeResource TextControlThemeMinHeight}" Padding="{TemplateBinding Padding}"  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
+                            <ContentControl VerticalAlignment="Center" Grid.Column="1" x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}" IsTabStop="False" Margin="{ThemeResource RichEditBoxTextThemeMargin}" Padding="{TemplateBinding Padding}" />
+
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+
+            <Setter Property="FontSize" Value="20"/>
+
+            <Setter Property="Width" Value="300"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+           
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="Grid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"   Background="{TemplateBinding Background}" CornerRadius="5" >
+                                <ContentPresenter x:Name="ContentPresenter"  ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel  >
+            <Image Source="/Assets/dream1.png" Width="160" Height="160"
+                   Stretch="UniformToFill"
+                   Margin="0,10">
+                
+            </Image>
+            <TextBlock Text="Dreaming" FontSize="40" HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="#FF35E79E"
+                       ></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" >
+
+            <TextBox    Height="50" Width="300"  
+                        PlaceholderText="手机" 
+                        Style="{StaticResource TextBoxStyle1}"
+                        Text="{Binding Phone,Mode=TwoWay}"
+                        InputScope="TelephoneNumber"></TextBox>
+
+            <PasswordBox  Height="50" Width="300"
+                          PlaceholderText="密码"
+                          Style="{StaticResource PasswordBoxStyle1}"
+                          Password="{Binding Password,Mode=TwoWay}"></PasswordBox>
+
+            <Button Content="登录"  HorizontalAlignment="Center"
+                    Margin="0,20" 
+                    Command="{Binding LoginCommand}"
+                    Background="#FF35E79E"></Button>
+            <Button Content="注册" Name="register" 
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,0" 
+                    Background="#FFDEDAAE"
+                    Command="{Binding ResgisterCommand}"></Button>
+
+        </StackPanel>
+
+    </Grid>
+</Page>
+

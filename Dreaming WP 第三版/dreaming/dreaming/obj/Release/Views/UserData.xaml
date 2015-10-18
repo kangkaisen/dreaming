@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="dreaming.Views.UserData"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dreaming.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="Black">
+    
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="完善用户资料" FontSize="35" VerticalAlignment="Bottom"
+                   Foreground="Black"></TextBlock>
+        <Image x:ConnectionId='1' Grid.Row="1" Width="100" Height="100" Source="/Assets/1.png"
+               Stretch="UniformToFill"
+               Name="image" 
+                                    ></Image>
+        <TextBox Grid.Row="2" PlaceholderText="昵称" 
+                 Height="50"
+                 Text="{Binding Name,Mode=TwoWay}"
+                 ></TextBox>
+        <TextBox Grid.Row="3"  Height="200"
+                 PlaceholderText="梦想宣言"
+                 Text="{Binding Dream,Mode=TwoWay}"></TextBox>
+        <Button Grid.Row="4" Content="完成" Width="360" HorizontalAlignment="Center"
+                Command="{Binding UpdateCommand}"
+                Foreground="Black"></Button>
+    </Grid>
+</Page>
+
