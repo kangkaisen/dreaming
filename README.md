@@ -8,7 +8,6 @@
 
 ![](http://img02.taobaocdn.com/imgextra/i2/1576560244/TB2upsqcXXXXXXVXXXXXXXXXXXX_!!1576560244.png_620x10000.jpg)
 
-![](http://img02.taobaocdn.com/imgextra/i2/1576560244/TB2upsqcXXXXXXVXXXXXXXXXXXX_!!1576560244.png_620x10000.jpg)
 
 ![](http://img03.taobaocdn.com/imgextra/i3/1576560244/TB2CE.fcXXXXXbXXpXXXXXXXXXX_!!1576560244.png_620x10000.jpg)
 
@@ -25,4 +24,6 @@
 ![](http://img01.taobaocdn.com/imgextra/i1/1576560244/TB2gagmcXXXXXcjXXXXXXXXXXXX_!!1576560244.png_620x10000.jpg)
 
 ## donate
-http://www.bcmeng.com/donate/
+![](http://blog.bcmeng.com/images/zhifu.jpg)
+
+
